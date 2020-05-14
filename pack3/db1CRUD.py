@@ -14,7 +14,7 @@ config = {  # dict타입
 }
 
 try:
-    conn = MySQLdb.connect(**config)    # dict타입의 자료는 **을 사용해서 받는다.
+    conn = MySQLdb.connect(**config)  # dict타입의 자료는 **을 사용해서 받는다.
     # print(conn)
     cursor = conn.cursor()
 
@@ -66,14 +66,29 @@ try:
     sql = 'select * from sangdata'
     cursor.execute(sql)
 
+    # 출력 1 : 전체 출력
+    print('출력 방법 1-----------')
+    for data in cursor.fetchall():  # tuple type
+        # print(data)
+        print('%s %s %s %s' % data)
 
+    print()
 
+    # 출력 2 : 하나씩 출력
+    print('\n 출력 방법 2-----------')
+    for r in cursor:
+        # print(r)
+        print(r[0], r[1], r[2], r[3])
 
+    # 출력 3 : 펼쳐서 담아온다.
+    print('\n 출력 방법 3-----------')
+    for (code, sang, su, dan) in cursor:  # code 등은 칼럼명이 아니라 변수명. 가독성을 위해서 해줌. 변수 순서에 의한 매핑이다.
+        print(code, sang, su, dan)
 
-
-
-
-
+    # 출력 4 : 칼럼명이 아닌 변수명. 가독성을 중시했을 뿐
+    print('\n 출력 방법 4-----------')
+    for (a, b, c, 단가) in cursor:  # code 등은 칼럼명이 아니라 변수명. 가독성을 위해서 해줌. 변수 순서에 의한 매핑이다.
+        print(a, b, c, 단가)
 
 except Exception as e:
     print('err : ', e)
