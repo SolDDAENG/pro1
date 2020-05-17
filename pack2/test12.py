@@ -27,7 +27,7 @@ print(TestClass.kk)     # prototype(원형) 클래스의 멤버 직접 호출
 print()
 test.printMsg()     # Bound Method Call = 인스턴스 객체에 bind 된 함수를 호출
                     # self를 붙인 쪽을 bound, 안 붙인 쪽은 unbound 메소드
-# TestClass.printMsg()   # 인스턴스를 하지 않 # TypeError: printMsg() missing 1 required positional argument: 'self'
+# TestClass.printMsg()   # 인스턴스를 하지 않음 # TypeError: printMsg() missing 1 required positional argument: 'self'
 TestClass.printMsg(test)    # Unbound Method Call
 print()
 print(type(1))
